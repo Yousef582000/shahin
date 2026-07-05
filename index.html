@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mostafa Shahin — Business Development Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#080b12;
+  --bg-1:#0e131d;
+  --bg-panel:#131a27;
+  --bg-panel-2:#161d2c;
+  --line:rgba(198,161,91,0.14);
+  --line-soft:rgba(255,255,255,0.06);
+  --gold:#c6a15b;
+  --gold-bright:#e8c77a;
+  --gold-dim:#8a7239;
+  --teal:#4fd1c5;
+  --text-0:#f2efe7;
+  --text-1:#b9c0cf;
+  --text-2:#78829a;
+  --surface-1:rgba(255,255,255,0.03);
+  --surface-2:rgba(255,255,255,0.07);
+  --grain-blend:overlay;
+  --grain-op:0.035;
+  --radius:14px;
+  --serif:'Fraunces', serif;
+  --sans:'Inter', sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  color-scheme: dark;
+  --nav-bg: rgba(8,11,18,0.55);
+  --nav-bg-scrolled: rgba(8,11,18,0.82);
+  transition: background-color .5s ease;
+}
+
+html[data-theme="light"]{
+  --bg-0:#faf7f0;
+  --bg-1:#f3efe4;
+  --bg-panel:#ffffff;
+  --bg-panel-2:#f7f3e9;
+  --line:rgba(154,116,42,0.20);
+  --line-soft:rgba(30,25,15,0.09);
+  --gold:#a5772b;
+  --gold-bright:#8a611f;
+  --gold-dim:#c9a15b;
+  --teal:#1a8f83;
+  --text-0:#211c11;
+  --text-1:#4c4636;
+  --text-2:#7d7360;
+  --surface-1:rgba(20,15,5,0.025);
+  --surface-2:rgba(20,15,5,0.06);
+  --grain-blend:multiply;
+  --grain-op:0.02;
+  --nav-bg: rgba(250,247,240,0.6);
+  --nav-bg-scrolled: rgba(250,247,240,0.88);
+  color-scheme: light;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg-0);
+  color:var(--text-1);
+  font-family:var(--sans);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .5s ease, color .5s ease;
+}
+::selection{background:var(--gold);color:#0a0e17;}
+
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg-0);}
+::-webkit-scrollbar-thumb{background:var(--bg-panel-2);border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dim);}
+
+/* ---------- Ambient background ---------- */
+.ambient{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(198,161,91,0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(79,209,197,0.06), transparent 60%);
+}
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);
+  transition:opacity .5s ease;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(16px) saturate(140%);
+  background:var(--nav-bg, rgba(8,11,18,0.55));
+  border-bottom:1px solid transparent;
+  transition:border-color .4s ease, background .4s ease;
+}
+nav.scrolled{border-color:var(--line);background:var(--nav-bg-scrolled, rgba(8,11,18,0.82));}
+.nav-inner{
+  max-width:1160px;margin:0 auto;padding:18px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{
+  font-family:var(--serif);font-size:20px;letter-spacing:0.3px;color:var(--text-0);
+  display:flex;align-items:center;gap:9px;
+}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse-dot 2.4s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(0.8);}}
+
+.nav-links{display:flex;gap:36px;font-size:14px;letter-spacing:0.2px;}
+.nav-links a{
+  position:relative;color:var(--text-1);transition:color .25s ease;padding:4px 0;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--text-0);}
+.nav-links a:hover::after{width:100%;}
+
+.nav-cta{
+  font-family:var(--mono);font-size:12px;letter-spacing:0.5px;
+  border:1px solid var(--gold-dim);color:var(--gold-bright);
+  padding:9px 18px;border-radius:30px;transition:all .3s ease;
+  display:flex;align-items:center;gap:7px;
+}
+.nav-cta:hover{background:var(--gold);color:#0a0e17;border-color:var(--gold);box-shadow:0 0 24px rgba(198,161,91,0.35);}
+
+.nav-toggle{display:none;}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding:150px 0 100px;overflow:hidden;
+}
+.hero-network{position:absolute;inset:0;z-index:0;opacity:0.55;}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(198,161,91,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(198,161,91,0.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 800px 500px at 30% 30%, black, transparent 75%);
+}
+.hero-inner{position:relative;z-index:2;}
+.hero-grid-layout{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center;}
+
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:0.6px;
+  color:var(--gold-bright);border:1px solid var(--line);background:rgba(198,161,91,0.06);
+  padding:7px 16px;border-radius:30px;margin-bottom:28px;
+  opacity:0;animation:fade-up .8s ease forwards;
+}
+.badge .ping{width:6px;height:6px;border-radius:50%;background:#5fe0a0;box-shadow:0 0 8px #5fe0a0;position:relative;}
+.badge .ping::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid #5fe0a0;animation:ring 1.8s ease-out infinite;}
+@keyframes ring{0%{transform:scale(0.5);opacity:0.8;}100%{transform:scale(2.2);opacity:0;}}
+
+.hero h1{
+  font-family:var(--serif);font-weight:500;color:var(--text-0);
+  font-size:clamp(44px,6.2vw,74px);line-height:1.03;letter-spacing:-0.01em;
+  margin-bottom:18px;
+  opacity:0;animation:fade-up .9s ease .1s forwards;
+}
+.hero h1 .accent{
+  background:linear-gradient(100deg, var(--gold-bright), var(--gold) 60%, #a67f3f);
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;
+}
+.hero .role{
+  font-size:19px;color:var(--text-1);font-weight:500;letter-spacing:0.2px;margin-bottom:20px;
+  opacity:0;animation:fade-up .9s ease .2s forwards;
+}
+.hero .role::before{content:'— ';color:var(--gold);}
+
+.hero p.bio{
+  max-width:520px;font-size:16px;color:var(--text-2);margin-bottom:28px;
+  opacity:0;animation:fade-up .9s ease .3s forwards;
+}
+
+.contact-line{
+  display:flex;gap:22px;font-family:var(--mono);font-size:13px;color:var(--text-2);margin-bottom:32px;flex-wrap:wrap;
+  opacity:0;animation:fade-up .9s ease .35s forwards;
+}
+.contact-line span{display:flex;align-items:center;gap:7px;}
+.contact-line svg{width:14px;height:14px;stroke:var(--gold);flex-shrink:0;}
+
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fade-up .9s ease .4s forwards;}
+.btn{
+  font-family:var(--sans);font-size:14px;font-weight:600;padding:13px 24px;border-radius:10px;
+  display:inline-flex;align-items:center;gap:8px;transition:all .3s cubic-bezier(.2,.8,.2,1);
+  cursor:pointer;border:1px solid transparent;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#151008;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(198,161,91,0.55);}
+.btn-ghost{background:var(--surface-1);border-color:var(--line-soft);color:var(--text-0);}
+.btn-ghost:hover{background:var(--surface-2);border-color:var(--gold-dim);transform:translateY(-2px);}
+.btn svg{width:16px;height:16px;}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* stat cards */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;opacity:0;animation:fade-in .9s ease .5s forwards;}
+@keyframes fade-in{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
+.stat-card{
+  background:linear-gradient(160deg, var(--bg-panel), var(--bg-panel-2));
+  border:1px solid var(--line-soft);border-radius:var(--radius);padding:20px 20px 18px;
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;top:-40%;left:-40%;width:80%;height:80%;
+  background:radial-gradient(circle, rgba(198,161,91,0.14), transparent 70%);
+  opacity:0;transition:opacity .4s ease;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--gold-dim);box-shadow:0 16px 32px -14px rgba(0,0,0,0.5);}
+.stat-card:hover::before{opacity:1;}
+.stat-icon{width:34px;height:34px;border-radius:9px;background:rgba(198,161,91,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.stat-icon svg{width:17px;height:17px;stroke:var(--gold-bright);}
+.stat-num{font-family:var(--serif);font-size:24px;color:var(--text-0);font-weight:500;margin-bottom:3px;}
+.stat-label{font-size:11.5px;color:var(--text-2);letter-spacing:0.2px;}
+
+/* ---------- Sections shared ---------- */
+.section{padding:130px 0;position:relative;z-index:2;}
+.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:56px;}
+.section-eyebrow{
+  font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;
+}
+.section-title{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);color:var(--text-0);font-weight:500;}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg, var(--line), transparent);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;}
+.reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+
+/* ---------- About ---------- */
+.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:start;}
+.about-text p{color:var(--text-1);font-size:16px;margin-bottom:20px;}
+.about-text strong{color:var(--gold-bright);font-weight:600;}
+
+.info-card{
+  background:linear-gradient(165deg, var(--bg-panel), var(--bg-1));
+  border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px;
+}
+.info-card h3{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.info-row{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-1);padding:10px 0;border-bottom:1px solid var(--line-soft);}
+.info-row:last-child{border-bottom:none;}
+.info-row svg{width:15px;height:15px;stroke:var(--gold);flex-shrink:0;}
+.info-row a:hover{color:var(--gold-bright);}
+
+/* ---------- Experience ---------- */
+.timeline{position:relative;padding-left:44px;}
+.timeline-track{position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line-soft);}
+.timeline-fill{
+  position:absolute;left:8px;top:6px;width:2px;height:0%;
+  background:linear-gradient(180deg, var(--gold-bright), var(--gold), var(--teal));
+  box-shadow:0 0 12px rgba(198,161,91,0.5);
+  transition:height .1s linear;
+}
+.job{position:relative;margin-bottom:44px;}
+.job:last-child{margin-bottom:0;}
+.job-dot{
+  position:absolute;left:-44px;top:4px;width:18px;height:18px;border-radius:50%;
+  background:var(--bg-0);border:2px solid var(--line-soft);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .5s ease, box-shadow .5s ease;
+}
+.job-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--text-2);transition:background .5s ease;}
+.job.active .job-dot{border-color:var(--gold);box-shadow:0 0 14px rgba(198,161,91,0.5);}
+.job.active .job-dot::after{background:var(--gold-bright);}
+
+.job-card{
+  background:var(--bg-panel);border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 28px;
+  transition:border-color .35s ease, transform .35s ease;
+}
+.job-card:hover{border-color:var(--gold-dim);transform:translateX(4px);}
+.job-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+.job-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.job-title{font-family:var(--serif);font-size:19px;color:var(--text-0);font-weight:500;}
+.job-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.5px;color:#5fe0a0;background:rgba(95,224,160,0.1);border:1px solid rgba(95,224,160,0.25);padding:3px 9px;border-radius:20px;}
+.job-date{font-family:var(--mono);font-size:12.5px;color:var(--text-2);white-space:nowrap;}
+.job-company{color:var(--gold);font-size:14px;margin-bottom:14px;}
+.job-bullets{display:flex;flex-direction:column;gap:8px;}
+.job-bullets li{font-size:14.5px;color:var(--text-1);padding-left:18px;position:relative;}
+.job-bullets li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:1px;background:var(--gold-dim);transform:rotate(45deg);}
+
+/* ---------- Skills ---------- */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.skill-group-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.skill-group-head .bar{width:20px;height:2px;background:var(--gold);}
+.skill-group-head span{font-family:var(--mono);font-size:13px;letter-spacing:0.5px;color:var(--text-0);text-transform:uppercase;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:10px;}
+.tag{
+  font-size:13.5px;padding:9px 16px;border-radius:9px;border:1px solid var(--line-soft);
+  background:var(--surface-1);color:var(--text-1);
+  transition:all .3s cubic-bezier(.2,.8,.2,1);cursor:default;
+}
+.tag.gold-tag:hover{border-color:var(--gold);color:var(--gold-bright);background:rgba(198,161,91,0.08);transform:translateY(-3px);}
+.tag.teal-tag:hover{border-color:var(--teal);color:var(--teal);background:rgba(79,209,197,0.08);transform:translateY(-3px);}
+
+/* ---------- Certificates ---------- */
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.cert-card{
+  background:var(--bg-panel);border:1px solid var(--line-soft);border-radius:12px;padding:20px;
+  display:flex;gap:14px;align-items:flex-start;transition:all .35s ease;position:relative;overflow:hidden;
+}
+.cert-card:hover{border-color:var(--gold-dim);transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(0,0,0,0.6);}
+.cert-icon{width:36px;height:36px;border-radius:9px;background:rgba(198,161,91,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cert-icon svg{width:17px;height:17px;stroke:var(--gold-bright);}
+.cert-name{font-size:14.5px;color:var(--text-0);font-weight:600;margin-bottom:4px;line-height:1.3;}
+.cert-org{font-size:12.5px;color:var(--text-2);font-family:var(--mono);}
+
+/* ---------- Projects ---------- */
+.project-card{
+  background:linear-gradient(165deg, var(--bg-panel), var(--bg-1));
+  border:1px solid var(--line-soft);border-radius:var(--radius);padding:34px;position:relative;overflow:hidden;
+}
+.project-card::before{
+  content:'';position:absolute;top:0;right:0;width:260px;height:260px;
+  background:radial-gradient(circle, rgba(79,209,197,0.08), transparent 70%);
+}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px;position:relative;z-index:1;}
+.project-title{font-family:var(--serif);font-size:22px;color:var(--text-0);font-weight:500;}
+.project-sub{font-size:13px;color:var(--text-2);margin-bottom:16px;}
+.project-grade{font-family:var(--mono);font-size:11px;color:#5fe0a0;background:rgba(95,224,160,0.1);border:1px solid rgba(95,224,160,0.25);padding:4px 11px;border-radius:20px;white-space:nowrap;}
+.project-bullets{margin-bottom:20px;position:relative;z-index:1;}
+.project-bullets li{font-size:14.5px;color:var(--text-1);padding-left:18px;position:relative;margin-bottom:8px;}
+.project-bullets li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--teal);border-radius:1px;transform:rotate(45deg);}
+.project-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1;}
+.project-tags span{font-family:var(--mono);font-size:11px;color:var(--text-2);border:1px solid var(--line-soft);padding:5px 12px;border-radius:20px;}
+
+/* ---------- Contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:stretch;}
+.contact-text p{font-size:16px;color:var(--text-1);margin-bottom:28px;max-width:480px;}
+.contact-item{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+.contact-icon{width:42px;height:42px;border-radius:10px;background:var(--bg-panel);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon svg{width:18px;height:18px;stroke:var(--gold);}
+.contact-label{font-family:var(--mono);font-size:10.5px;color:var(--text-2);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.contact-value{font-size:15px;color:var(--text-0);}
+.contact-value:hover{color:var(--gold-bright);}
+
+.contact-card{
+  background:linear-gradient(165deg, #0d1420, #060a11);
+  border:1px solid var(--line);border-radius:var(--radius);padding:40px 32px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 300px 200px at 50% 0%, rgba(198,161,91,0.14), transparent 70%);
+}
+.contact-card-icon{width:56px;height:56px;border-radius:14px;background:rgba(198,161,91,0.1);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.contact-card-icon svg{width:26px;height:26px;stroke:var(--gold-bright);}
+.contact-card h4{font-family:var(--serif);font-size:20px;color:var(--text-0);position:relative;z-index:1;}
+.contact-card p{font-size:13px;color:var(--text-2);position:relative;z-index:1;}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid var(--line-soft);padding:32px 0;position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+}
+.footer-brand{font-family:var(--serif);font-size:16px;color:var(--text-0);}
+.footer-sub{font-size:13px;color:var(--text-2);}
+.footer-social{display:flex;gap:14px;}
+.footer-social a{width:36px;height:36px;border-radius:9px;background:var(--bg-panel);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;transition:all .3s ease;}
+.footer-social a:hover{border-color:var(--gold);transform:translateY(-3px);}
+.footer-social svg{width:15px;height:15px;stroke:var(--gold);}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .nav-links{display:none;}
+  .hero-grid-layout{grid-template-columns:1fr;}
+  .about-grid,.skills-grid,.contact-grid{grid-template-columns:1fr;}
+  .cert-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-grid{max-width:420px;}
+}
+@media (max-width:560px){
+  .wrap{padding:0 20px;}
+  .cert-grid{grid-template-columns:1fr;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .section{padding:90px 0;}
+  .hero{padding:130px 0 70px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+<div class="grain"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>Mostafa Shahin</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <button id="theme-toggle" aria-label="Toggle light and dark theme" style="
+        width:38px;height:38px;border-radius:10px;border:1px solid var(--line-soft);
+        background:var(--surface-1);display:flex;align-items:center;justify-content:center;
+        cursor:pointer;transition:all .3s ease;color:var(--gold);flex-shrink:0;">
+        <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      </button>
+      <a href="https://personal-portfolio-d-xrwq.bolt.host/Mostafa_Shahin_-_Business_Development_Specialist.pdf" target="_blank" class="nav-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;stroke:currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <svg class="hero-network" id="hero-network" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div class="wrap hero-inner">
+    <div class="hero-grid-layout">
+      <div>
+        <div class="badge"><span class="ping"></span>Open to Opportunities</div>
+        <h1>Mostafa <span class="accent">Shahin</span></h1>
+        <div class="role">Business Development Specialist</div>
+        <p class="bio">CS graduate specializing in B2B Software Sales, Salesforce CRM, and Digital Transformation. Helping businesses grow through technology.</p>
+
+        <div class="contact-line">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Cairo, Egypt</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>+20 114 422 3117</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-gold">Get in Touch</a>
+          <a href="https://linkedin.com/in/mostafa-shahin11" target="_blank" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://personal-portfolio-d-xrwq.bolt.host/Mostafa_Shahin_-_Business_Development_Specialist.pdf" target="_blank" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <div class="stat-num"><span class="counter" data-target="1">0</span>+ Years</div>
+          <div class="stat-label">B2B Software Sales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></div>
+          <div class="stat-num"><span class="counter" data-target="2">0</span> Certs</div>
+          <div class="stat-label">Salesforce Certified</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+          <div class="stat-num">Trailhead</div>
+          <div class="stat-label">Ranger Rank</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="stat-num">Full Cycle</div>
+          <div class="stat-label">Sales Management</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">01</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>CS graduate passionate about <strong>Business Development, Salesforce CRM, Project Management,</strong> and Customer Success. With 1+ years of experience in B2B Software Sales, specializing in Digital Transformation, HRMS, Payroll, and ERP solutions.</p>
+        <p>Skilled in Salesforce and Business Analysis fundamentals with hands-on experience in flows, dashboards, user stories, and n8n Automation. I hold two Salesforce certificates and a Trailhead Ranger Rank. I look forward to using data to improve Salesforce solutions, streamline processes, and support business growth through technology. I have strong communication skills and a willingness to learn.</p>
+      </div>
+
+      <div class="info-card reveal">
+        <h3>Quick Info</h3>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>BSc Computer Science, Information Systems — Ain Shams University (2023)</div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Cairo, Egypt</div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4Z"/><path d="m4 6 8 7 8-7"/></svg><a href="mailto:MostafaShahin11@outlook.com">MostafaShahin11@outlook.com</a></div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><a href="https://linkedin.com/in/mostafa-shahin11" target="_blank">linkedin.com/in/mostafa-shahin11</a></div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg>Arabic (Native) · English (Professional)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">02</span>
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-track"></div>
+      <div class="timeline-fill" id="timeline-fill"></div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-top">
+            <div class="job-title-wrap"><span class="job-title">Business Development Specialist</span><span class="job-tag">Current</span></div>
+            <span class="job-date">Jun 2026 – Present</span>
+          </div>
+          <div class="job-company">Fawry Dirac Systems</div>
+          <ul class="job-bullets">
+            <li>Identified and generated new business opportunities through outbound prospecting, referrals, networking, and digital channels.</li>
+            <li>Promoted and sold Fawry Business HR, Payroll, and ERP solutions to SMEs and enterprise customers.</li>
+            <li>Managed the full sales cycle from lead generation and qualification to product demonstrations, proposal preparation, negotiation, and deal closure.</li>
+            <li>Conducted discovery meetings to understand client business processes, operational challenges, and digital transformation requirements.</li>
+            <li>Delivered tailored product presentations and live demos highlighting HRMS, Payroll, Attendance Management, and ERP capabilities.</li>
+            <li>Collaborated with presales and implementation teams to design customized solutions that aligned with customer requirements.</li>
+            <li>Prepared commercial proposals, quotations, and business cases to demonstrate ROI and business value.</li>
+            <li>Followed up on implementation projects to ensure successful onboarding and customer retention.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-top">
+            <div class="job-title-wrap"><span class="job-title">Sales Account Manager</span></div>
+            <span class="job-date">Oct 2025 – May 2026</span>
+          </div>
+          <div class="job-company">Tqnia IT</div>
+          <ul class="job-bullets">
+            <li>Identify and qualify B2B leads and decision-makers.</li>
+            <li>Present SaaS solutions through demos and meetings.</li>
+            <li>Manage the end-to-end sales process and close deals.</li>
+            <li>Build long-term client relationships.</li>
+            <li>Achieve assigned sales targets and update CRM records.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-top">
+            <div class="job-title-wrap"><span class="job-title">Salesforce Administrator</span></div>
+            <span class="job-date">Apr 2025 – Sep 2025</span>
+          </div>
+          <div class="job-company">ALX</div>
+          <ul class="job-bullets">
+            <li>Learned to automate business processes and customize the Salesforce platform for organizational needs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-top">
+            <div class="job-title-wrap"><span class="job-title">Business Support Coordinator</span></div>
+            <span class="job-date">Mar 2024 – Feb 2025</span>
+          </div>
+          <div class="job-company">Future of Egypt Authority for Sustainable Development</div>
+          <ul class="job-bullets">
+            <li>Process Optimization: organized workflows and improved decision-making.</li>
+            <li>Cross-Team Coordination: scheduled monthly events with attendance compliance.</li>
+            <li>Helped streamline business, improve strategic decision-making, and drive enhanced services and customer satisfaction.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-dot"></div>
+        <div class="job-card">
+          <div class="job-top">
+            <div class="job-title-wrap"><span class="job-title">Head Cashier</span></div>
+            <span class="job-date">Jul 2023 – Jan 2024</span>
+          </div>
+          <div class="job-company">Perfect Food Group</div>
+          <ul class="job-bullets">
+            <li>Proficient in MICROS POS and Restaurant Management (RM) systems, ensuring seamless order processing, payment handling, and menu configuration.</li>
+            <li>Skilled in optimizing restaurant operations through inventory control, staff scheduling, and sales reporting.</li>
+            <li>Experienced in troubleshooting system issues, training staff, and enhancing workflow efficiency in fast-paced dining environments.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">03</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="reveal">
+        <div class="skill-group-head"><span class="bar"></span><span>Technical Skills</span></div>
+        <div class="tag-cloud reveal-stagger">
+          <span class="tag gold-tag">Software Sales</span>
+          <span class="tag gold-tag">Salesforce CRM</span>
+          <span class="tag gold-tag">CRM Technologies</span>
+          <span class="tag gold-tag">Agile Methodologies</span>
+          <span class="tag gold-tag">Scrum Framework</span>
+          <span class="tag gold-tag">Business Analysis</span>
+          <span class="tag gold-tag">n8n Automation</span>
+          <span class="tag gold-tag">Trello</span>
+          <span class="tag gold-tag">ERP Solutions</span>
+          <span class="tag gold-tag">HRMS &amp; Payroll</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-group-head"><span class="bar" style="background:var(--teal)"></span><span>Soft Skills</span></div>
+        <div class="tag-cloud reveal-stagger">
+          <span class="tag teal-tag">Communication</span>
+          <span class="tag teal-tag">Teamwork</span>
+          <span class="tag teal-tag">Leadership</span>
+          <span class="tag teal-tag">Negotiation</span>
+          <span class="tag teal-tag">Problem-solving</span>
+          <span class="tag teal-tag">Adaptability</span>
+          <span class="tag teal-tag">Analytical Thinking</span>
+          <span class="tag teal-tag">Time Management</span>
+          <span class="tag teal-tag">Attention to Detail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
+<section class="section" id="certificates">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">04</span>
+      <h2 class="section-title">Courses &amp; Certificates</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cert-grid reveal-stagger">
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></div>
+        <div><div class="cert-name">Salesforce Certified Platform Administrator</div><div class="cert-org">Salesforce</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></div>
+        <div><div class="cert-name">Salesforce Certified Platform Foundations</div><div class="cert-org">Salesforce</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3Z"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div><div class="cert-name">Business Analysis Fundamentals</div><div class="cert-org">Microsoft</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></div>
+        <div><div class="cert-name">Agile Scrum for Project Management</div><div class="cert-org">almentor</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <div><div class="cert-name">Database Fundamentals</div><div class="cert-org">MaharaTech · ITI MOOCs</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg></div>
+        <div><div class="cert-name">Data Analysis Using Excel</div><div class="cert-org">Edraak</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-6"/></svg></div>
+        <div><div class="cert-name">Product Management</div><div class="cert-org">Sprints</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+        <div><div class="cert-name">Introduction to Business Analysis</div><div class="cert-org">almentor</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M17 11a4 4 0 0 0 0-8"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <div><div class="cert-name">Effective Leadership</div><div class="cert-org">HP LIFE</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
+        <div><div class="cert-name">Data Analysis using Google Spreadsheets</div><div class="cert-org">Coursera</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">05</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-top">
+        <div>
+          <div class="project-title">Attendance Monitoring and Assistant System</div>
+          <div class="project-sub">Graduation Project</div>
+        </div>
+        <span class="project-grade">Grade: Excellent</span>
+      </div>
+      <ul class="project-bullets">
+        <li>The Attendance Monitoring system uses facial recognition to automate attendance tracking in schools and colleges.</li>
+        <li>It compares captured faces with a database to record attendance accurately, addressing outdated records.</li>
+        <li>The system reduces administrative workload and provides up-to-date information, well-received by faculty and administrators.</li>
+      </ul>
+      <div class="project-tags">
+        <span>Facial Recognition</span><span>Python</span><span>Database</span><span>Computer Vision</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">06</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-text reveal">
+        <p>I'm actively looking for new opportunities in Business Development and Salesforce Administration. Whether you have a question, a project, or just want to connect — feel free to reach out!</p>
+
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4Z"/><path d="m4 6 8 7 8-7"/></svg></div>
+          <div><div class="contact-label">Email</div><a class="contact-value" href="mailto:MostafaShahin11@outlook.com">MostafaShahin11@outlook.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
+          <div><div class="contact-label">Phone</div><a class="contact-value" href="tel:+201144223117">+201144223117</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="contact-label">LinkedIn</div><a class="contact-value" href="https://linkedin.com/in/mostafa-shahin11" target="_blank">linkedin.com/in/mostafa-shahin11</a></div>
+        </div>
+      </div>
+
+      <div class="contact-card reveal">
+        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <h4>Salesforce Trailhead Ranger</h4>
+        <p>2x Salesforce Certified · Trailhead Ranger Rank</p>
+        <a href="https://linkedin.com/in/mostafa-shahin11" target="_blank" class="btn btn-gold" style="position:relative;z-index:1;">View LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;width:100%;">
+    <div>
+      <div class="footer-brand">Mostafa Shahin</div>
+      <div class="footer-sub">Business Development Specialist · Cairo, Egypt</div>
+    </div>
+    <div class="footer-social">
+      <a href="mailto:MostafaShahin11@outlook.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4Z"/><path d="m4 6 8 7 8-7"/></svg></a>
+      <a href="tel:+201144223117"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></a>
+      <a href="https://linkedin.com/in/mostafa-shahin11" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Theme toggle ----
+(function(){
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const iconSun = document.getElementById('icon-sun');
+  const iconMoon = document.getElementById('icon-moon');
+
+  function applyTheme(theme){
+    if(theme === 'light'){
+      root.setAttribute('data-theme','light');
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+    } else {
+      root.removeAttribute('data-theme');
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+    }
+  }
+
+  const saved = localStorage.getItem('portfolio-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    const next = isLight ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('portfolio-theme', next);
+  });
+
+  toggleBtn.addEventListener('mouseenter', () => { toggleBtn.style.borderColor = 'var(--gold-dim)'; toggleBtn.style.transform='translateY(-2px)'; });
+  toggleBtn.addEventListener('mouseleave', () => { toggleBtn.style.borderColor = 'var(--line-soft)'; toggleBtn.style.transform='translateY(0)'; });
+})();
+
+// ---- Nav scroll state ----
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+// ---- Reveal on scroll ----
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+revealEls.forEach(el => io.observe(el));
+
+// stagger delays inside reveal-stagger groups
+document.querySelectorAll('.reveal-stagger').forEach(group => {
+  [...group.children].forEach((child, i) => {
+    child.style.transitionDelay = (i * 45) + 'ms';
+  });
+});
+
+// ---- Counter animation ----
+const counters = document.querySelectorAll('.counter');
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      let cur = 0;
+      const step = () => {
+        cur += Math.max(target/30, 0.05);
+        if(cur >= target){ el.textContent = target; }
+        else { el.textContent = cur.toFixed(0); requestAnimationFrame(step); }
+      };
+      step();
+      counterIO.unobserve(el);
+    }
+  });
+}, {threshold:0.5});
+counters.forEach(c => counterIO.observe(c));
+
+// ---- Timeline pipeline fill + active dot ----
+const timeline = document.getElementById('timeline');
+const timelineFill = document.getElementById('timeline-fill');
+const jobs = document.querySelectorAll('.job');
+
+function updateTimeline(){
+  const rect = timeline.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const start = rect.top;
+  const total = rect.height;
+  let progress = (vh*0.7 - start) / total;
+  progress = Math.max(0, Math.min(1, progress));
+  timelineFill.style.height = (progress*100) + '%';
+
+  const fillPx = progress * total;
+  jobs.forEach(job => {
+    const jobTop = job.offsetTop;
+    job.classList.toggle('active', fillPx >= jobTop + 10);
+  });
+}
+window.addEventListener('scroll', updateTimeline, {passive:true});
+window.addEventListener('resize', updateTimeline);
+updateTimeline();
+
+// ---- Hero network graph (canvas-like SVG nodes representing CRM connections) ----
+(function(){
+  const svg = document.getElementById('hero-network');
+  const ns = 'http://www.w3.org/2000/svg';
+  const W = 1200, H = 800;
+  const nodeCount = 22;
+  const nodes = [];
+  for(let i=0;i<nodeCount;i++){
+    nodes.push({
+      x: Math.random()*W,
+      y: Math.random()*H,
+      r: Math.random()*2 + 1.5
+    });
+  }
+  // connect nearby nodes
+  const maxDist = 220;
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const dx = nodes[i].x-nodes[j].x, dy = nodes[i].y-nodes[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if(d < maxDist){
+        const line = document.createElementNS(ns,'line');
+        line.setAttribute('x1', nodes[i].x);
+        line.setAttribute('y1', nodes[i].y);
+        line.setAttribute('x2', nodes[j].x);
+        line.setAttribute('y2', nodes[j].y);
+        line.setAttribute('stroke', 'rgba(198,161,91,' + (0.22 - d/maxDist*0.2) + ')');
+        line.setAttribute('stroke-width','1');
+        svg.appendChild(line);
+      }
+    }
+  }
+  nodes.forEach((n,i) => {
+    const c = document.createElementNS(ns,'circle');
+    c.setAttribute('cx', n.x);
+    c.setAttribute('cy', n.y);
+    c.setAttribute('r', n.r);
+    c.setAttribute('fill', i % 5 === 0 ? '#4fd1c5' : '#c6a15b');
+    c.style.opacity = '0.7';
+    c.innerHTML = `<animate attributeName="opacity" values="0.3;0.85;0.3" dur="${3+Math.random()*3}s" begin="${Math.random()*3}s" repeatCount="indefinite"/>`;
+    svg.appendChild(c);
+  });
+})();
+</script>
+</body>
+</html>
